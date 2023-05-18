@@ -47,15 +47,12 @@ class Category(BaseModel):
     )
 
     class Meta:
-            verbose_name = 'категория'
-            verbose_name_plural = 'Категории'
-            ordering = ('-created_at',)
+        verbose_name = 'категория'
+        verbose_name_plural = 'Категории'
+        ordering = ('-created_at',)
 
     def __str__(self):
         return self.title
-
-    #def get_absolute_url(self):
-    #    return reverse('blog:post_detail', args=[self.pk])
 
 
 class Post(BaseModel):
@@ -97,14 +94,14 @@ class Post(BaseModel):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
         ordering = ('-pub_date',)
-    
+
     def get_absolute_url(self):
         return reverse('blog:profile', args=[self.author])
 
     def __str__(self):
         return self.title
-    
-    
+
+
 class Comment(models.Model):
     text = models.TextField('Текст комментария')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -118,11 +115,5 @@ class Comment(models.Model):
         default_related_name = "comments"
         ordering = ('created_at',)
 
-
     def __str__(self):
         return f'Комментарий пользователя {self.author}'
-    
-
-    
-    
-
